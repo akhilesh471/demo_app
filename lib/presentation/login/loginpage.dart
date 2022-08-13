@@ -39,7 +39,7 @@ final formkey = GlobalKey<FormState>();
                 padding: const EdgeInsets.only(left: 40.0, right: 40),
                 child: Column(
                   children: [
-                    kheight35,
+                   kheight10,
                     FormWidget(textController: _usernameController,
                       hint: 'EMAIL',
                       icn: Icons.mail_outline,
@@ -142,25 +142,26 @@ class TopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 5 / 3,
+    return Container(
+      height: size(ctx: context).height*0.3,
+      // color: Colors.amber,
       child: Column(
         children: [
-          kheight40,
+          SizedBox(height: size(ctx: context).height*0.05,),
           CircleAvatar(
             backgroundImage: const AssetImage('assets/avatar1.jpg'),
             radius: size(ctx: context).height / 15,
           ),
-          const SizedBox(
-            height: 10,
+           SizedBox(
+            height: size(ctx: context).height*0.02,
           ),
           Text(
             'Welcome Back',
             style:
                 GoogleFonts.poppins(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(
-            height: 5,
+           SizedBox(
+            height: size(ctx: context).height*0.01,
           ),
           const Text(
             'Sign to continue',

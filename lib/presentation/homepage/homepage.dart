@@ -70,88 +70,86 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                       child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      child: StaggeredGridView.countBuilder(
-                        shrinkWrap: true,
-                        physics: const ScrollPhysics(),
-                        crossAxisCount: 2,
-                        itemCount: state.productlist.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              context.read<ProductlistBloc>().add(
-                                  ProductlistEvent.getCurrentProduct(
-                                      id: state.productlist[index].id));
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (ctx) {
-                                return ViewProducts();
-                              }));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurple,
-                                        borderRadius: BorderRadius.circular(5),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                              state
-                                                  .productlist[index].images[0],
-                                            ),
-                                            fit: BoxFit.fill)),
-                                    height: (index % 2 == 0)
-                                        ? size(ctx: context).height * 0.22
-                                        : size(ctx: context).height * 0.36,
-                                    width: size(ctx: context).width * 0.46,
-                                    child: Stack(
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        Positioned(
-                                          bottom: -24,
-                                          right: 10,
-                                          child: IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(
-                                                Icons.add_circle_rounded,
-                                                color: Colors.yellow[700],
-                                                size: 30,
-                                              )),
-                                        ),
-                                        Positioned(
-                                          bottom: -37,
-                                          right: 0,
-                                          child: ProductPrice(
-                                              amount: state.productlist[index].price.toString()),
-                                        )
-                                      ],
-                                    ),
+                    child: StaggeredGridView.countBuilder(
+                      shrinkWrap: true,
+                      physics: const ScrollPhysics(),
+                      crossAxisCount: 2,
+                      itemCount: state.productlist.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            context.read<ProductlistBloc>().add(
+                                ProductlistEvent.getCurrentProduct(
+                                    id: state.productlist[index].id));
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (ctx) {
+                              return ViewProducts();
+                            }));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.deepPurple,
+                                      borderRadius: BorderRadius.circular(5),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                            state
+                                                .productlist[index].images[0],
+                                          ),
+                                          fit: BoxFit.fill)),
+                                  height: (index % 2 == 0)
+                                      ? size(ctx: context).height * 0.21
+                                      : size(ctx: context).height * 0.35,
+                                  width: size(ctx: context).width * 0.46,
+                                  child: Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      Positioned(
+                                        bottom: -24,
+                                        right: 10,
+                                        child: IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.add_circle_rounded,
+                                              color: Colors.yellow[700],
+                                              size: 30,
+                                            )),
+                                      ),
+                                      Positioned(
+                                        bottom: -37,
+                                        right: 0,
+                                        child: ProductPrice(
+                                            amount: state.productlist[index].price.toString()),
+                                      )
+                                    ],
                                   ),
-                                  kheight5,
-                                  ProductInfo(
-                                      context: context,
-                                      info: state.productlist[index].title!),
-                                  kheight5,
-                                  ProductInfo(
-                                      context: context,
-                                      info: state
-                                          .productlist[index].description!),
-                                ],
-                              ),
+                                ),
+                              kheight5,
+                                ProductInfo(
+                                    context: context,
+                                    info: state.productlist[index].title!),
+                          kheight5,
+                                ProductInfo(
+                                    context: context,
+                                    info: state
+                                        .productlist[index].description!),
+                              ],
                             ),
-                          );
-                        },
-                        staggeredTileBuilder: (int index) {
-                          return StaggeredTile.count(
-                              1, (index % 2 == 0) ? 1.2 : 1.8);
-                        },
-                        mainAxisSpacing: 15,
-                        crossAxisSpacing: 8,
-                      ),
+                          ),
+                        );
+                      },
+                      staggeredTileBuilder: (int index) {
+                        return StaggeredTile.count(
+                            1, (index % 2 == 0) ? 1.2 : 1.8);
+                      },
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 8,
                     ),
                   ))
                 ]);
